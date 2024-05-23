@@ -18,5 +18,8 @@ butoon:{
     borderRadius:4,
     elevation:3,
     marginTop:5,
+},
+buttonPressed:{
+  backgroundColor: '#fff'
 }
 });

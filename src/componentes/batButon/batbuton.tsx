@@ -15,18 +15,32 @@ export function BatButon() {
 
   function handleCopyButoon(){
     clipboard.setStringAsync(pass)
+    setPass('');
   }
+
+  // Adicionando estado para controlar o feedback visual do botão
+  const [generateButtonPressed, setGenerateButtonPressed] = useState(false);
+  const [copyButtonPressed, setCopyButtonPressed] = useState(false);
+
   return (
     <>
       <BatImput pass={pass} />
 
-      <Pressable onPress={handleGenerateButton} style={styles.butoon} >
-
+      <Pressable
+        onPressIn={() => setGenerateButtonPressed(true)} // Quando o botão é pressionado
+        onPressOut={() => setGenerateButtonPressed(false)} // Quando o toque é removido do botão
+        onPress={handleGenerateButton}
+        style={[styles.butoon, generateButtonPressed && styles.buttonPressed]} // Aplicando estilo condicional
+      >
         <Text style={styles.Text}>GENERATE</Text>
-
       </Pressable>
 
-      <Pressable style={styles.butoon} onPress={handleCopyButoon}>
+      <Pressable
+        onPressIn={() => setCopyButtonPressed(true)} // Quando o botão é pressionado
+        onPressOut={() => setCopyButtonPressed(false)} // Quando o toque é removido do botão
+        onPress={handleCopyButoon}
+        style={[styles.butoon, copyButtonPressed && styles.buttonPressed]} // Aplicando estilo condicional
+      >
         <Text style={styles.Text}>⚡ COPY </Text>
       </Pressable>
     </>
